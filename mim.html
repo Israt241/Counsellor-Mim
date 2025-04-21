@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counsellor Mim - Marriage Counseling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff6f61, #ffb88c);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: '💞';
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .nav-links a:hover {
+            color: #ffe0b2;
+        }
+
+        .lang-toggle {
+            cursor: pointer;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        main {
+            margin-top: 70px;
+        }
+
+        .hero {
+            background: url('https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd') no-repeat center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: #ff6f61;
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: clamp(1rem, 3.5vw, 1.1rem);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #e65b50;
+        }
+
+        section {
+            padding: clamp(2rem, 8vw, 4rem) 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about, .services, .happy-customers, .blog, .contact {
+            background: #f9f9f9;
+        }
+
+        .about h2, .services h2, .happy-customers h2, .blog h2, .contact h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ff6f61;
+            font-size: clamp(1.8rem, 6vw, 2.2rem);
+        }
+
+        .about img {
+            display: block;
+            margin: 2rem auto;
+            max-width: 100%;
+            border-radius: 10px;
+            width: min(800px, 90%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .service-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .happy-customers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .customer-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .customer-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .customer-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .customer-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .customer-card h4 {
+            color: #ff6f61;
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card-content h3 {
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+        }
+
+        .blog-card-content p {
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact input, .contact textarea {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        .contact textarea {
+            resize: vertical;
+        }
+
+        .contact button {
+            background: #ff6f61;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+        }
+
+        .contact button:hover {
+            background: #e65b50;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: #ff6f61;
+                width: 100%;
+                padding: 1rem;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .services-grid, .happy-customers-grid, .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .customer-card img, .blog-card img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo::before {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 2rem 0.5rem;
+            }
+
+            .about img {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Counsellor Mim</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="en">Home</a><a href="#home" class="bn" style="display: none;">হোম</a></li>
+                <li><a href="#about" class="en">About</a><a href="#about" class="bn" style="display: none;">আমার সম্পর্কে</a></li>
+                <li><a href="#services" class="en">Services</a><a href="#services" class="bn" style="display: none;">সেবা</a></li>
+                <li><a href="#happy-customers" class="en">Happy Customers</a><a href="#happy-customers" class="bn" style="display: none;">সুখী গ্রাহক</a></li>
+                <li><a href="#blog" class="en">Blog</a><a href="#blog" class="bn" style="display: none;">ব্লগ</a></li>
+                <li><a href="#contact" class="en">Contact</a><a href="#contact" class="bn" style="display: none;">যোগাযোগ</a></li>
+                <li><span class="lang-toggle" onclick="toggleLanguage()">BN | EN</span></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="en">Welcome to Your Journey of Love</h1>
+                <h1 class="bn" style="display: none;">ভালোবাসার যাত্রায় আপনাকে স্বাগতম</h1>
+                <p class="en">Counsellor Mim - Your Trusted Counselor for Newly Married Couples</p>
+                <p class="bn" style="display: none;">কাউন্সেলর মিম - নবদম্পতিদের জন্য আপনার বিশ্বস্ত পরামর্শদাতা</p>
+                <a href="#contact" class="cta-button en">Book a Session</a>
+                <a href="#contact" class="cta-button bn" style="display: none;">সেশন বুক করুন</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2 class="en">About Counsellor Mim</h2>
+            <h2 class="bn" style="display: none;">কাউন্সেলর মিম সম্পর্কে</h2>
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="Couple holding hands">
+            <p class="en">Counsellor Mim is a dedicated marriage counselor with years of experience helping newly married couples navigate the joys and challenges of their new life together. With a compassionate approach and deep understanding of relationships, she provides personalized guidance to build strong, lasting marriages.</p>
+            <p class="bn" style="display: none;">কাউন্সেলর মিম একজন নিবেদিতপ্রাণ বিবাহ পরামর্শদাতা, যিনি বছরের পর বছর ধরে নবদম্পতিদের তাদের নতুন জীবনের আনন্দ এবং চ্যালেঞ্জ নেভিগেট করতে সাহায্য করছেন। সহানুভূতিশীল পদ্ধতি এবং সম্পর্কের গভীর বোঝাপড়ার সাথে, তিনি শক্তিশালী এবং দীর্ঘস্থায়ী বিবাহ গড়ে তুলতে ব্যক্তিগত দিকনির্দেশনা প্রদান করেন।</p>
+        </section>
+
+        <section id="services" class="services">
+            <h2 class="en">Our Services</h2>
+            <h2 class="bn" style="display: none;">আমাদের সেবা</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 class="en">Pre-Marital Counseling</h3>
+                    <h3 class="bn" style="display: none;">বিবাহ-পূর্ব পরামর্শ</h3>
+                    <p class="en">Prepare for a strong marriage with guidance on communication and expectations.</p>
+                    <p class="bn" style="display: none;">যোগাযোগ এবং প্রত্যাশার উপর দিকনির্দেশনা সহ একটি শক্তিশালী বিবাহের জন্য প্রস্তুতি নিন।</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="en">Conflict Resolution</h3>
+                    <h3 class="bn" style="display: none;">দ্বন্দ্ব সমাধান</h3>
+                    <p class="en">Learn effective ways to resolve conflicts and strengthen your bond.</p>
+                    <p class="bn" style="display: none;">দ্বন্দ্ব সমাধানের কার্যকর উপায় শিখুন এবং আপনার বন্ধন শক্তিশালী করুন।</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="en">Communication Skills</h3>
+                    <h3 class="bn" style="display: none;">যোগাযোগ দক্ষতা</h3>
+                    <p class="en">Enhance your ability to communicate openly and effectively with your partner.</p>
+                    <p class="bn" style="display: none;">আপনার সঙ্গীর সাথে খোলাখুলি এবং কার্যকরভাবে যোগাযোগ করার ক্ষমতা বাড়ান।</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="en">Financial Planning for Couples</h3>
+                    <h3 class="bn" style="display: none;">দম্পতিদের জন্য আর্থিক পরিকল্পনা</h3>
+                    <p class="en">Develop strategies to manage finances together and reduce stress.</p>
+                    <p class="bn" style="display: none;">একসাথে আর্থিক ব্যবস্থাপনার কৌশল তৈরি করুন এবং চাপ কমান।</p>
+                </div>
+                <div class="service-card">
+                    <h3 class="en">Intimacy Building</h3>
+                    <h3 class="bn" style="display: none;">ঘনিষ্ঠতা গড়ে তোলা</h3>
+                    <p class="en">Foster emotional and physical closeness in your relationship.</p>
+                    <p class="bn" style="display: none;">আপনার সম্পর্কে মানসিক এবং শারীরিক ঘনিষ্ঠতা বাড়ান।</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="happy-customers" class="happy-customers">
+            <h2 class="en">Happy Customers</h2>
+            <h2 class="bn" style="display: none;">সুখী গ্রাহক</h2>
+            <div class="happy-customers-grid">
+                <div class="customer-card">
+                    <img src="https://images.unsplash.com/photo-1464983502408-976be5136a5e" alt="Happy couple Moouli">
+                    <p class="en">"Counsellor Mim transformed our marriage with her insightful guidance. We now communicate better and feel closer than ever!"</p>
+                    <p class="bn" style="display: none;">"কাউন্সেলর মিম তার গভীর দৃষ্টিভঙ্গির পরামর্শ দিয়ে আমাদের বিবাহকে রূপান্তরিত করেছেন। আমরা এখন আরও ভালোভাবে যোগাযোগ করি এবং আগের চেয়ে বেশি কাছাকাছি অনুভব করি!"</p>
+                    <h4 class="en">Mashior & Mouli</h4>
+                    <h4 class="bn" style="display: none;">মৌলি এবং মাশিয়র</h4>
+                </div>
+                <div class="customer-card">
+                    <img src="https://images.unsplash.com/photo-1504198453319-5ce911b937de" alt="Happy couple Mashior">
+                    <p class="en">"Her sessions gave us practical tools to resolve conflicts and build a stronger bond. Highly recommend Counsellor Mim!"</p>
+                    <p class="bn" style="display: none;">"তার সেশনগুলি আমাদের দ্বন্দ্ব সমাধান এবং শক্তিশালী বন্ধন গড়ে তোলার জন্য ব্যবহারিক সরঞ্জাম দিয়েছে। কাউন্সেলর মিমকে অত্যন্ত সুপারিশ করি!"</p>
+                    <h4 class="en">Mashior & Mouli</h4>
+                    <h4 class="bn" style="display: none;">মৌলি এবং মাশিয়র</h4>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="blog">
+            <h2 class="en">Blog</h2>
+            <h2 class="bn" style="display: none;">ব্লগ</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1517167685289-9a2c6ae0bc33" alt="Couple communication">
+                    <div class="blog-card-content">
+                        <h3 class="en">5 Tips for Better Communication</h3>
+                        <h3 class="bn" style="display: none;">উন্নত যোগাযোগের জন্য ৫টি টিপস</h3>
+                        <p class="en">Learn simple ways to improve how you talk and listen to your partner.</p>
+                        <p class="bn" style="display: none;">আপনার সঙ্গীর সাথে কীভাবে কথা বলবেন এবং শুনবেন তা উন্নত করার সহজ উপায় শিখুন।</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1504198453319-5ce911b937de" alt="Couple planning">
+                    <div class="blog-card-content">
+                        <h3 class="en">Managing Finances as a Couple</h3>
+                        <h3 class="bn" style="display: none;">দম্পতি হিসেবে আর্থিক ব্যবস্থাপনা</h3>
+                        <p class="en">Discover strategies to align your financial goals together.</p>
+                        <p class="bn" style="display: none;">আপনার আর্থিক লক্ষ্যগুলি একসাথে সারিবদ্ধ করার কৌশল আবিষ্কার করুন।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 class="en">Contact Us</h2>
+            <h2 class="bn" style="display: none;">যোগাযোগ করুন</h2>
+            <form id="contact-form">
+                <input type="text" placeholder="Name" class="en" required>
+                <input type="text" placeholder="নাম" class="bn" style="display: none;" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" class="en" rows="5" required></textarea>
+                <textarea placeholder="বার্তা" class="bn" style="display: none;" rows="5" required></textarea>
+                <button type="submit" class="en">Send Message</button>
+                <button type="submit" class="bn" style="display: none;">বার্তা পাঠান</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p class="en">© 2025 Counsellor Mim Counseling. All rights reserved.</p>
+        <p class="bn" style="display: none;">© ২০২৫ কাউন্সেলর মিম কাউন্সেলিং। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            const enElements = document.querySelectorAll('.en');
+            const bnElements = document.querySelectorAll('.bn');
+            const langToggle = document.querySelector('.lang-toggle');
+
+            enElements.forEach(el => {
+                el.style.display = el.style.display === 'none' ? 'block' : 'none';
+            });
+            bnElements.forEach(el => {
+                el.style.display = el.style.display === 'none' ? 'block' : 'none';
+            });
+            langToggle.textContent = langToggle.textContent === 'BN | EN' ? 'EN | BN' : 'BN | EN';
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message sent successfully!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
