@@ -180,7 +180,84 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
+    .happy-customers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding: 1rem;
+    }
 
+    .customer-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+    }
+
+    .customer-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .customer-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        border: 4px solid #ff6f61;
+        transition: transform 0.3s ease;
+    }
+
+    .customer-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .customer-card p {
+        font-style: italic;
+        margin-bottom: 1rem;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        color: #555;
+        line-height: 1.5;
+    }
+
+    .customer-card h4 {
+        color: #ff6f61;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .happy-customers-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .customer-card img {
+            height: 220px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .customer-card {
+            padding: 1rem;
+        }
+
+        .customer-card img {
+            height: 180px;
+        }
+
+        .customer-card p {
+            font-size: 0.9rem;
+        }
+
+        .customer-card h4 {
+            font-size: 1rem;
+        }
+    }
         .customer-card {
             background: white;
             padding: 1.5rem;
@@ -431,22 +508,36 @@
         <section id="happy-customers" class="happy-customers">
             <h2 class="en">Happy Customers</h2>
             <h2 class="bn" style="display: none;">সুখী গ্রাহক</h2>
-            <div class="happy-customers-grid">
-                <div class="customer-card">
-                    <img src="https://images.unsplash.com/photo-1464983502408-976be5136a5e" alt="Happy couple Moouli">
-                    <p class="en">"Counsellor Mim transformed our marriage with her insightful guidance. We now communicate better and feel closer than ever!"</p>
-                    <p class="bn" style="display: none;">"কাউন্সেলর মিম তার গভীর দৃষ্টিভঙ্গির পরামর্শ দিয়ে আমাদের বিবাহকে রূপান্তরিত করেছেন। আমরা এখন আরও ভালোভাবে যোগাযোগ করি এবং আগের চেয়ে বেশি কাছাকাছি অনুভব করি!"</p>
-                    <h4 class="en">Mashior & Mouli</h4>
-                    <h4 class="bn" style="display: none;">মৌলি এবং মাশিয়র</h4>
-                </div>
-                <div class="customer-card">
-                    <img src="https://images.unsplash.com/photo-1504198453319-5ce911b937de" alt="Happy couple Mashior">
-                    <p class="en">"Her sessions gave us practical tools to resolve conflicts and build a stronger bond. Highly recommend Counsellor Mim!"</p>
-                    <p class="bn" style="display: none;">"তার সেশনগুলি আমাদের দ্বন্দ্ব সমাধান এবং শক্তিশালী বন্ধন গড়ে তোলার জন্য ব্যবহারিক সরঞ্জাম দিয়েছে। কাউন্সেলর মিমকে অত্যন্ত সুপারিশ করি!"</p>
-                    <h4 class="en">Mashior & Mouli</h4>
-                    <h4 class="bn" style="display: none;">মৌলি এবং মাশিয়র</h4>
-                </div>
-            </div>
+           <div class="happy-customers-grid">
+    <div class="customer-card">
+        <img src="https://images.unsplash.com/photo-1543932927-a9def13a0e7c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y291cGxlfGVufDB8fDB8fHww" alt="Happy married couple Moouli and Mashior">
+        <p class="en">"Counsellor Mim transformed our marriage with her insightful guidance. We now communicate better and feel closer than ever!"</p>
+        <p class="bn" style="display: none;">"কাউন্সেলর মিম তার গভীর দৃষ্টিভঙ্গির পরামর্শ দিয়ে আমাদের বিবাহকে রূপান্তরিত করেছেন। আমরা এখন আরও ভালোভাবে যোগাযোগ করি এবং আগের চেয়ে বেশি কাছাকাছি অনুভব করি!"</p>
+        <h4 class="en">Moouli & Mashior</h4>
+        <h4 class="bn" style="display: none;">মৌলি ও মাশিয়র</h4>
+    </div>
+    <div class="customer-card">
+        <img src="https://images.unsplash.com/photo-1541089404510-5c9a779841fc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y291cGxlfGVufDB8fDB8fHww" alt="Engaged couple Shihab and Zarin">
+        <p class="en">"Counsellor Mim's pre-marital sessions gave us tools to build a strong foundation for our upcoming marriage. Highly recommended!"</p>
+        <p class="bn" style="display: none;">"কাউন্সেলর মিমের বিবাহ-পূর্ব সেশনগুলি আমাদের আগামী বিবাহের জন্য একটি শক্তিশালী ভিত্তি তৈরি করার সরঞ্জাম দিয়েছে। অত্যন্ত সুপারিশ করি!"</p>
+        <h4 class="en">Shihab & Zarin</h4>
+        <h4 class="bn" style="display: none;">শিহাব ও জারিন</h4>
+    </div>
+    <div class="customer-card">
+        <img src="https://plus.unsplash.com/premium_photo-1676667573109-273586405c96?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y291cGxlfGVufDB8fDB8fHww" alt="Engaged couple Rajib and Setu">
+        <p class="en">"Her empathetic pre-marital counseling helped us align our goals and deepen our trust. We're ready for our big day!"</p>
+        <p class="bn" style="display: none;">"তার সহানুভূতিশীল বিবাহ-পূর্ব পরামর্শ আমাদের লক্ষ্যগুলি সারিবদ্ধ করতে এবং আমাদের বিশ্বাস গভীর করতে সাহায্য করেছে। আমরা আমাদের বড় দিনের জন্য প্রস্তুত!"</p>
+        <h4 class="en">Rajib & Setu</h4>
+        <h4 class="bn" style="display: none;">রাজিব ও সেতু</h4>
+    </div>
+    <div class="customer-card">
+        <img src="https://plus.unsplash.com/premium_photo-1676648196510-f1815500fa30?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDl8fGNvdXBsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Engaged couple Roksana and Monir">
+        <p class="en">"Counsellor Mim's guidance on financial planning for our future marriage reduced our stress. Amazing experience!"</p>
+        <p class="bn" style="display: none;">"আমাদের ভবিষ্যত বিবাহের জন্য কাউন্সেলর মিমের আর্থিক পরিকল্পনার দিকনির্দেশনা আমাদের চাপ কমিয়েছে। অসাধারণ অভিজ্ঞতা!"</p>
+        <h4 class="en">Roksana & Monir</h4>
+        <h4 class="bn" style="display: none;">রোকসানা ও মনির</h4>
+    </div>
+</div>
         </section>
 
         <section id="blog" class="blog">
